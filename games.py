@@ -198,4 +198,18 @@ def guessing_game(username):
                 print(f"Please enter a number between {between[0]} and {between[1]}.")
                 continue
 
-"CREATE REACTION TIME GAME"
+def reaction_times(username):
+    import pygame
+    #Allows me to use the functions of pygame
+    pygame.init()
+    #Defines a color for the variable white
+    white = (255, 255, 255)
+    #Sets window to a display of a certain size
+    window = pygame.display.set_mode(400, 400)
+    #Sets the name of the window that pops up
+    pygame.display.set_caption('Reaction Time Test')
+    #Sets a font for pygame to use
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    #Creats an object with text on it that can be displayed
+    text = font.render('Click Now!!', True, white)
+    
