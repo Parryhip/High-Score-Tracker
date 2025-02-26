@@ -1,6 +1,3 @@
-
-
-
 #------------------------------------------------------------------------Daniel Code---------------------------------------------------------------------------
 def update_high_score(username, new_score):
     """Updates the user's high score if the new score is higher than the previous one."""
