@@ -1,34 +1,40 @@
 #-------------------------------------------------------------------------------------------Matthew's Code-------------------------------------------------------------------------------------------#
+
+
 def print_tictactoe_leaderboard():
     count = 0
     while count <= 10:
-        with open("high_scores.txt", "r") as file:
-            for line in file:
-                print(line)
-                count += 1
+        with open("tic_tac_toe_high_scores.txt", "r") as file:
+            #for line in file:
+                #print(line)
+                #count += 1
     else:
+
         
-        #take the index of that in tictactoe_leaders
         #make it so that when they want to leave, they can just press enter
 
 def print_numguessing_leaderboard():
     count = 0
     while count <= 10:
-        with open("high_scores.txt", "r") as file:
-            for line in file:
-                print(line)
-                count += 1
-        #take the index of that in tictactoe_leaders
+        with open("num_guessing_high_scores.txt", "r") as file:
+            #for line in file:
+                #print(line)
+                #count += 1
+    else:
+
+        
         #make it so that when they want to leave, they can just press enter
 
 def print_reactionspeed_leaderboard():
     count = 0
     while count <= 10:
-        with open("high_scores.txt", "r") as file:
-            for line in file:
-                print(line)
-                count += 1
-        #take the index of that in tictactoe_leaders
+        with open("reaction_speed_high_scores.txt", "r") as file:
+            #for line in file:
+                #print(line)
+                #count += 1
+    else:
+
+        
         #make it so that when they want to leave, they can just press enter
 
 def choose_leaderboard():
@@ -44,4 +50,7 @@ def choose_leaderboard():
             #main function or UI before
         else:
             print("You didn't put in one of the given numbers!")
+            continue
+
             
+#-------------------------------------------------------------------------------------------End of Matthew's Code-------------------------------------------------------------------------------------------#
