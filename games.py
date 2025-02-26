@@ -3,8 +3,8 @@
 #Checks if the board is full
 def full(board):
     for row in board:
-        for collumn in row:
-            if collumn == ' ':
+        for column in row:
+            if column == ' ':
                 return False
     return True
 
@@ -12,16 +12,16 @@ def full(board):
 def match(board, letter):
     for row in board:
         matched = True
-        for collumn in row:
-            if collumn != letter:
+        for column in row:
+            if column != letter:
                 matched = False
         if matched:
             return True
         #uses range to select the correct indexes in the correct rows to find vertical matches
-    for collumn in range(3):
+    for column in range(3):
         matched = True
         for row in board:
-            if row[collumn] != letter:
+            if row[column] != letter:
                 matched = False
         if matched:
             return True
@@ -34,7 +34,7 @@ def match(board, letter):
         return True
     matched = True
     for square in range(3):
-        if board[square][square - 2] != letter:
+        if board[square][2 -square] != letter:
             matched = False
     if matched:
         return True
@@ -63,9 +63,9 @@ def view_board(board):
             print("-----")
 
 #Checks that the player/CPU isn't trying to place a letter on an occupied square
-def check(board, row, collumn, letter):
-    if board[row-1][collumn-1] == ' ':
-        board[row-1][collumn-1] = letter
+def check(board, row, column, letter):
+    if board[row-1][column-1] == ' ':
+        board[row-1][column-1] = letter
         return True
     else:
         return False
@@ -78,20 +78,22 @@ def player_turn(board, letter):
         if row != '1' and row != '2' and row != '3':
             print("Please enter 1, 2, or 3.")
             continue
-        collumn = input("What collumn would you like to place in? Left is 1, middle is 2, and right is 3.\n")
-        if collumn != '1' and collumn != '2' and collumn != '3':
+        column = input("What column would you like to place in? Left is 1, middle is 2, and right is 3.\n")
+        if column != '1' and column != '2' and column != '3':
             print("Please enter 1, 2, or 3.")
             continue
-        if not check(board, row, collumn, letter):
+        if not check(board, int(row), int(column), letter):
             print("Please don't place on an occupied tile.")
             continue
         if not match(board, letter):
             if full(board):
-                print("Cat won")
+                view_board(board)
+                print("Cat won.")
                 return 'cat'
             else:
                 return 'none'
         else:
+            view_board(board)
             print("You won!")
             return 'player'
 
@@ -100,36 +102,100 @@ def cpu_turn(board, letter):
     import random
     while True:
         row = random.randint(1, 3)
-        collumn = random.randint(1, 3)
-        if check(board, row, collumn, letter)
-        CONTINUE HERE
+        column = random.randint(1, 3)
+        if not check(board, row, column, letter):
+            continue
+        else:
+            if not match(board, letter):
+                if full(board):
+                    view_board(board)
+                    print("Cat won.")
+                    return 'cat'
+                else:
+                    return 'none'
+            else:
+                view_board(board)
+                print("CPU won. :(")
+                return 'computer'
+
+        
 
 #Plays the game, tic tac toe.
-def tictactoe():
+def tictactoe(username):
+    rowOne = [" ", " ", " "]
+    rowTwo = [" ", " ", " "]
+    rowThree = [" ", " ", " "]
+    board = [rowOne, rowTwo, rowThree]
     while True:
-        rowOne = [" ", " ", " "]
-        rowTwo = [" ", " ", " "]
-        rowThree = [" ", " ", " "]
-        board = [rowOne, rowTwo, rowThree]
+        player = input("Would you like to be X, O or E to leave?\n")
+        if player.upper() == 'E':
+            return False
+        elif player.upper() != 'X' and player.upper() != 'O':
+            print("Please enter, X, O, or E.")
+        else:
+            break
+    if player == 'X':
         while True:
-            player = input("Would you like to be X, O or E to leave?")
-            if player.upper() == 'E':
-                return False
-            elif player.upper() != 'X' and player.upper() != 'O':
-                print("Please enter, X, O, or E.")
-            else:
-                break
-        if player == 'X':
             winner = player_turn(board, 'X')
             if winner == 'cat':
-                return 'cat'
+                return False
             elif winner == 'player':
-                return 'player'
+                return True, username
+            winner = cpu_turn(board, 'O')
+            if winner == 'cat':
+                return False
+            elif winner == 'computer':
+                return False
+            continue
+    elif player == 'O':
+        while True:
+            winner = cpu_turn(board, 'X')
+            if winner == 'cat':
+                return False
+            elif winner == 'computer':
+                return False
+            winner = player_turn(board, 'O')
+            if winner == 'cat':
+                return False
+            elif winner == 'player':
+                return True, username
+            continue
             
-            
-        else:
-            
-        
+#runs the code to play a number guessing game
+def guessing_game(username):
+    import random
+    while True:
+        guesses = 0
+        choice = input("What range would you like to guess between?\n1: 1 - 10\n2: 1 - 100\n3: 1 - 1000\n4: Leave\n")
+        if choice == '4':
+            return False
+        elif choice == '1':
+            between = [1, 10]
+        elif choice == '2':
+            between = [1, 100]
+        elif choice == '3':
+            between = [1, 1000]
+        num = random.randint(between[0], between[1])
+        while True:
+            guess = input("What number would you like to guess?\n")
+            try:
+                int(guess)
+            except:
+                print(f"Please enter a number between {between[0]} and {between[1]}.")
+                continue
+            if int(guess) <= between[1] and int(guess) >= between[0]:
+                if int(guess) > num:
+                    print("Too high.")
+                    guesses += 1
+                elif int(guess) < num:
+                    print("Too low.")
+                    guesses += 1
+                elif int(guess) == num:
+                    print(f"You got it in {guesses} tries!")
+                    guesses += 1
+                    return username, guesses, between
+            else:
+                print(f"Please enter a number between {between[0]} and {between[1]}.")
+                continue
 
-
-        
+"CREATE REACTION TIME GAME"
