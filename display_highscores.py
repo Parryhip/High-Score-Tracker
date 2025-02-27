@@ -1,35 +1,43 @@
 #-------------------------------------------------------------------------------------------Matthew's Code-------------------------------------------------------------------------------------------#
+
 def print_tictactoe_leaderboard():
+    from retrieve_high_scores import retrieve_tic_tac_toe as retrieve 
     count = 0
+    high_scores = retrieve()
     while count <= 10:
-        with open("high_scores.txt", "r") as file:
-            for line in file:
-                print(line)
-                count += 1
+        for user in high_scores:
+            print(count,".",user, ":",high_scores[user])
+            count += 1
     else:
-        
-        #take the index of that in tictactoe_leaders
+
         #make it so that when they want to leave, they can just press enter
+
 
 def print_numguessing_leaderboard():
+    from retrieve_high_scores import retrieve_num_guessing as retrieve 
     count = 0
+    high_scores = retrieve()
     while count <= 10:
-        with open("high_scores.txt", "r") as file:
-            for line in file:
-                print(line)
-                count += 1
-        #take the index of that in tictactoe_leaders
+        for user in high_scores:
+            print(count,".",user, ":",high_scores[user])
+            count += 1
+    else:
+
         #make it so that when they want to leave, they can just press enter
 
+
 def print_reactionspeed_leaderboard():
+    from retrieve_high_scores import retrieve_reaction_speed as retrieve 
     count = 0
+    high_scores = retrieve()
     while count <= 10:
-        with open("high_scores.txt", "r") as file:
-            for line in file:
-                print(line)
-                count += 1
-        #take the index of that in tictactoe_leaders
+        for user in high_scores:
+            print(count,".",user, ":",high_scores[user])
+            count += 1
+    else:
+
         #make it so that when they want to leave, they can just press enter
+
 
 def choose_leaderboard():
     while True:
@@ -44,4 +52,7 @@ def choose_leaderboard():
             #main function or UI before
         else:
             print("You didn't put in one of the given numbers!")
+            continue
+
             
+#-------------------------------------------------------------------------------------------End of Matthew's Code-------------------------------------------------------------------------------------------#
