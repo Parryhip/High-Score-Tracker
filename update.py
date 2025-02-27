@@ -8,7 +8,7 @@ def update_high_score(username, new_score):
     user_found = False
     
     # Read and update high score
-    with open("high_scores.txt", "r") as file:
+    with open("High-Score-Tracker\high_scores.txt", "r") as file:
         for line in file:
             stored_username, stored_score = line.strip().split(":")
             stored_score = int(stored_score)

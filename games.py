@@ -120,10 +120,10 @@ def tictactoe():
     rowThree = [" ", " ", " "]
     board = [rowOne, rowTwo, rowThree]
     while True:
-        player = input("Would you like to be X, O or E to leave?\n")
-        if player.upper() == 'E':
+        player = input("Would you like to be X, O or E to leave?\n").upper()
+        if player == 'E':
             return False
-        elif player.upper() != 'X' and player.upper() != 'O':
+        elif player != 'X' and player != 'O':
             print("Please enter, X, O, or E.")
         else:
             break
@@ -170,6 +170,9 @@ def guessing_game():
             between = [1, 100]
         elif choice == '3':
             between = [1, 1000]
+        else:
+            print("Please enter 1, 2, 3, or 4.")
+            continue
         #chooses a number between the selected range
         num = random.randint(between[0], between[1])
         while True:
@@ -248,7 +251,7 @@ def reaction_times():
 #Main ui to access the games
 def game_ui(username):
     from update import update_high_score as update
-    choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit")
+    choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit\n")
     if choice == '1':
         if not tictactoe():
             return
@@ -273,3 +276,5 @@ def game_ui(username):
         return
     else:
         print("Please enter 1, 2, 3, or 4.")
+
+game_ui('stinky face')
