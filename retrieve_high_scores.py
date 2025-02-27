@@ -1,7 +1,7 @@
 #Samuel Andelin, Retrieve high scores function
 
 def sort_by(item):
-    return item[1]
+    return int(item[1])
 
 def retrieve_tic_tac_toe():
     list_with_highscores_to_sort = []
