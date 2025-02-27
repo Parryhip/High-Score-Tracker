@@ -41,7 +41,7 @@ def choose_leaderboard():
         elif choice == 3:
             print_reactionspeed_leaderboard()
         elif choice == 4:
-            #main function or UI before
+            #main function or UI before ##we don't have main yet##
         else:
             print("You didn't put in one of the given numbers!")
             
