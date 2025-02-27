@@ -44,17 +44,6 @@ def match(board, letter):
     #Returns false if no matches were found
     return False
 
-#Allows the user to choose if they want to play again
-def play_again():
-    while True:
-        answer = input("Would you like to play that game again? y/n:")
-        if answer.lower() == 'y':
-            return True
-        elif answer.lower() == 'n':
-            return False
-        else:
-            print('Please enter y or n.')
-
 #Prints the board in a way that looks like an actual tic-tac-toe board
 def view_board(board):
     for idx, item in enumerate(board):
@@ -125,7 +114,7 @@ def cpu_turn(board, letter):
         
 
 #Plays the game, tic tac toe.
-def tictactoe(username):
+def tictactoe():
     rowOne = [" ", " ", " "]
     rowTwo = [" ", " ", " "]
     rowThree = [" ", " ", " "]
@@ -144,7 +133,7 @@ def tictactoe(username):
             if winner == 'cat':
                 return False
             elif winner == 'player':
-                return True, username
+                return True
             winner = cpu_turn(board, 'O')
             if winner == 'cat':
                 return False
@@ -162,11 +151,11 @@ def tictactoe(username):
             if winner == 'cat':
                 return False
             elif winner == 'player':
-                return True, username
+                return True
             continue
             
 #runs the code to play a number guessing game
-def guessing_game(username):
+def guessing_game():
     import random
     while True:
         guesses = 0
@@ -203,13 +192,13 @@ def guessing_game(username):
                 elif int(guess) == num:
                     guesses += 1
                     print(f"You got it in {guesses} tries!")
-                    return username, guesses, between
+                    return guesses
             else:
                 print(f"Please enter a number between {between[0]} and {between[1]}.")
                 continue
 
 #Uses pygame to create a reaction time game
-def reaction_times(username):
+def reaction_times():
     import pygame
     import time
     import random
@@ -218,37 +207,69 @@ def reaction_times(username):
     #Defines a color for the variables white and black using hex codes
     white = (255, 255, 255)
     black = (0, 0, 0)
+    print("After a random period of time, a window will appear. Click when the window appears.")
+    
+    #Chooses a random time to wait
+    wait =  random.randint(1, 10)
+    #waits
+    time.sleep(wait)
     #Sets window to a display of a certain size
-    window = pygame.display.set_mode(400, 400)
+    window = pygame.display.set_mode((400, 400))
     #Sets the name of the window that pops up
     pygame.display.set_caption('Reaction Time Test')
     #Sets a font for pygame to use
-    font = pygame.font.Font('Times New Roman', 32)
+    font = pygame.font.SysFont('monospace', 32)
     #Creates an object with text on it that can be displayed
-    text = font.render('Click Now!', True, white)
+    text = font.render('Click Now!', True, white, black)
+    #Creates a rect object to house the text
+    text_rect = text.get_rect()
     #Centers the text
-    text.center = (200, 200)
-    #Starts a loop to display the window and text
+    text_rect.center = (200, 200)
+    #Starts the timer
     start = time.time()
-    input("A window will open, and after a random period of time, a message  will appear. Click when the message appears.")
-    #CURRENTLY DOESNT DISPLAY THE WINDOOW AND WORDS SEPERATELY
-    #FIX THAT
-    #MAKE IT SO THE WINDOW IMMEDIATELY POPS UP AND THEN THEY HAVE TO WAIT TO CLICK.
-    wait =  random.randint(1, 10)
-    time.sleep(wait)
     while True:
         #Makes the window appear black
         window.fill(black)
+        #Makes the text appear on the rectangle
+        window.blit(text, text_rect)
         for event in pygame.event.get():
             #Continously loops to check if the user tried to quit, and updates the display afterwards.
             if event.type == pygame.QUIT:
                 pygame.quit()
                 reaction_time = False
-                break
+                return reaction_time
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 pygame.quit()
                 reaction_time = time.time() - start
-                break
+                print(f"You reacted in {round(reaction_time, 2)} seconds.")
+                return reaction_time
             pygame.display.update()
-
-reaction_times('Barnald')
+        
+#Main ui to access the games
+def game_ui(username):
+    from update import update_high_score as update
+    choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit")
+    if choice == '1':
+        if not tictactoe():
+            return
+        else:
+            update(username, 1)
+        #NEED TO FIGURE OUT HOW TO MAKE IT WORK WITH DANIEL'S CODE
+    elif choice == '2':
+        result = guessing_game()
+        if not result:
+            return
+        else:
+            update(username, result)
+        #NEED TO FIGURE OUT HOW TO MAKE IT WORK WITH DANIEL'S CODE
+    elif choice == '3':
+        result = reaction_times()
+        if not result:
+            return
+        else:
+            update(username, result)
+        #NEED TO FIGURE OUT HOW TO MAKE IT WORK WITH DANIEL'S CODE
+    elif choice == '4':
+        return
+    else:
+        print("Please enter 1, 2, 3, or 4.")
