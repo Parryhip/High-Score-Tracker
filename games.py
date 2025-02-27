@@ -276,5 +276,3 @@ def game_ui(username):
         return
     else:
         print("Please enter 1, 2, 3, or 4.")
-
-game_ui('stinky face')
