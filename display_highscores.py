@@ -9,7 +9,7 @@ def print_tictactoe_leaderboard():
             print(count,".",user, ":",high_scores[user])
             count += 1
     else:
-
+        
         #make it so that when they want to leave, they can just press enter
 
 
