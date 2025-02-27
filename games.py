@@ -250,29 +250,28 @@ def reaction_times():
         
 #Main ui to access the games
 def game_ui(username):
-    from update import update_high_score as update
-    choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit\n")
-    if choice == '1':
-        if not tictactoe():
+    while True:
+        #from update import update_high_score as update
+        choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit\n")
+        if choice == '1':
+            if not tictactoe():
+                continue
+            else:
+                update(username, 1)
+        elif choice == '2':
+            result = guessing_game()
+            if not result:
+                continue
+            else:
+                update(username, result)
+        elif choice == '3':
+            result = reaction_times()
+            if not result:
+                continue
+            else:
+                update(username, result)
+        elif choice == '4':
             return
         else:
-            update(username, 1)
-        #NEED TO FIGURE OUT HOW TO MAKE IT WORK WITH DANIEL'S CODE
-    elif choice == '2':
-        result = guessing_game()
-        if not result:
-            return
-        else:
-            update(username, result)
-        #NEED TO FIGURE OUT HOW TO MAKE IT WORK WITH DANIEL'S CODE
-    elif choice == '3':
-        result = reaction_times()
-        if not result:
-            return
-        else:
-            update(username, result)
-        #NEED TO FIGURE OUT HOW TO MAKE IT WORK WITH DANIEL'S CODE
-    elif choice == '4':
-        return
-    else:
-        print("Please enter 1, 2, 3, or 4.")
+            print("Please enter 1, 2, 3, or 4.")
+game_ui('Imagine_existing')
