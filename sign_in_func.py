@@ -86,3 +86,5 @@ def sign_in():
             return "exit"
         else:
             print("Not a valid option!")
+
+sign_in()
