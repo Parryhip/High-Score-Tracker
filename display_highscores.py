@@ -2,48 +2,52 @@
 
 def print_tictactoe_leaderboard():
     from retrieve_high_scores import retrieve_tic_tac_toe as retrieve 
-    count = 0
+    count = 1
     high_scores = retrieve()
-    while count <= 10:
-        for user in high_scores:
-            print(count,".",user, ":",high_scores[user])
-            count += 1
-    else:
-        input("Enter anything to continue")
-        return
+    for user in high_scores:
+        print(count,".",user, ":",high_scores[user])
+        count += 1
+        if count == 10:
+            break
+    input("Enter anything to continue")
+    return
         
         #make it so that when they want to leave, they can just press enter
 
 
 def print_numguessing_leaderboard():
     from retrieve_high_scores import retrieve_num_guessing as retrieve 
-    count = 0
+    count = 1
     high_scores = retrieve()
-    while count <= 10:
-        for user in high_scores:
-            print(count,".",user, ":",high_scores[user])
-            count += 1
-    else:
-        input("Enter anything to continue")
-        return
+    for user in high_scores:
+        print(count,".",user, ":",high_scores[user])
+        count += 1
+        if count == 10:
+            break
+    input("Enter anything to continue")
+    return
 
 
 def print_reactionspeed_leaderboard():
     from retrieve_high_scores import retrieve_reaction_speed as retrieve 
-    count = 0
+    count = 1
     high_scores = retrieve()
-    while count <= 10:
-        for user in high_scores:
-            print(count,".",user, ":",high_scores[user])
-            count += 1
-    else:
-        input("Enter anything to continue")
-        return
+    for user in high_scores:
+        print(count,".",user, ":",high_scores[user])
+        count += 1
+        if count == 10:
+            break
+    input("Enter anything to continue")
+    return
 
 
 def choose_leaderboard():
     while True:
-        choice = int(input("What leaderboard would you like to see?\nPress 1 for Tic Tac Toe\nPress 2 for Number Guessing Game\nPress 3 for Reaction Speed Game\nPress 4 to leave leaderboards\n:"))
+        try:
+            choice = int(input("What leaderboard would you like to see?\nPress 1 for Tic Tac Toe\nPress 2 for Number Guessing Game\nPress 3 for Reaction Speed Game\nPress 4 to leave leaderboards\n:"))
+        except:
+            print("Not a number!")
+            continue
         if choice == 1:
             print_tictactoe_leaderboard()
         elif choice == 2:
