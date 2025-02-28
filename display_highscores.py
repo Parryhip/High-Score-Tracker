@@ -54,5 +54,5 @@ def choose_leaderboard():
             print("You didn't put in one of the given numbers!")
             continue
 
-
+choose_leaderboard()
 #-------------------------------------------------------------------------------------------End of Matthew's Code-------------------------------------------------------------------------------------------#
