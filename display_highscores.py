@@ -7,25 +7,28 @@ def print_tictactoe_leaderboard():
     for user in high_scores:
         print(count,".",user, ":",high_scores[user])
         count += 1
-        if count == 10:
+        if count > 11:
             break
-    input("Enter anything to continue")
-    return
+    else:
+        input("Enter anything to continue")
+        return
         
         #make it so that when they want to leave, they can just press enter
 
 
-def print_numguessing_leaderboard():
+def print_numguessing_leaderboard(rangestr):
     from retrieve_high_scores import retrieve_num_guessing as retrieve 
     count = 1
-    high_scores = retrieve()
+    high_scores = retrieve(rangestr)
+    print(f'{rangestr}:')
     for user in high_scores:
         print(count,".",user, ":",high_scores[user])
         count += 1
-        if count == 10:
+        if count > 11:
             break
-    input("Enter anything to continue")
-    return
+    else:
+        input("Enter anything to continue")
+        return
 
 
 def print_reactionspeed_leaderboard():
@@ -35,10 +38,11 @@ def print_reactionspeed_leaderboard():
     for user in high_scores:
         print(count,".",user, ":",high_scores[user])
         count += 1
-        if count == 10:
+        if count > 11:
             break
-    input("Enter anything to continue")
-    return
+    else:
+        input("Enter anything to continue")
+        return
 
 
 def choose_leaderboard():
@@ -51,7 +55,9 @@ def choose_leaderboard():
         if choice == 1:
             print_tictactoe_leaderboard()
         elif choice == 2:
-            print_numguessing_leaderboard()
+            print_numguessing_leaderboard('1-10')
+            print_numguessing_leaderboard('1-100')
+            print_numguessing_leaderboard('1-1000')
         elif choice == 3:
             print_reactionspeed_leaderboard()
         elif choice == 4:

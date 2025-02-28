@@ -203,7 +203,7 @@ def guessing_game():
                 elif int(guess) == num:
                     guesses += 1
                     print(f"You got it in {guesses} tries!")
-                    return guesses
+                    return guesses, between
             else:
                 print(f"Please enter a number between {between[0]} and {between[1]}.")
                 continue
@@ -252,7 +252,7 @@ def reaction_times():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 pygame.quit()
                 reaction_time = time.time() - start
-                print(f"You reacted in {round(reaction_time, 2)} seconds.")
+                print(f"You reacted in {reaction_time} seconds.")
                 return reaction_time
             pygame.display.update()
         
@@ -267,13 +267,13 @@ def game_ui(username):
             if not tictactoe():
                 continue
             else:
-                tic_tac_toe_update(username, 1)
+                tic_tac_toe_update(username)
         elif choice == '2':
             result = guessing_game()
             if not result:
                 continue
             else:
-                num_guessing_update(username, result)
+                num_guessing_update(username, result[0], result[1])
         elif choice == '3':
             result = reaction_times()
             if not result:
