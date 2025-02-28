@@ -1,10 +1,3 @@
-joe:53
-tom:57
-jimmy:61
-bob:36
-nope:62
-sam:2
-toemuncher:93
-jommy:39
-zoe:51
-tommybobby:832
+samuel:1
+eggs:2
+b:1

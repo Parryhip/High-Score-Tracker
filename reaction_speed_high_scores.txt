@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 joe:53
 tom:57
 jimmy:61
@@ -8,3 +9,8 @@ toemuncher:93
 jommy:39
 zoe:51
 tommybobby:832
+=======
+eggs:0.43859386444091797
+Gorbly:0.3515915870666504
+b:0.804948091506958
+>>>>>>> 76407d564d9f4aefa3fbe8fa08cbef81bc570dbc
