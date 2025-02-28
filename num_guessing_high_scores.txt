@@ -1,3 +1,4 @@
-kip:67
-george:62
-bobby:23
+eggs:4:1-100
+eggs:2:1-10
+eggs:8:1-1000
+b:11

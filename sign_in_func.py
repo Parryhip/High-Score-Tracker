@@ -9,7 +9,7 @@ def sign_in():
                 go_to_first_choice = False
                 while True:
                     loopback = True
-                    username = input("What is your username?(or type exit to exit)\n-->")
+                    username = input("What is your username?(or type exit to exit)\n-->").strip()
                     if username.lower() == "exit":
                         go_to_first_choice = True
                         break
@@ -28,7 +28,7 @@ def sign_in():
                     break
                 while True:
                     loopback = True
-                    password = input("What is your password?(or type exit to exit)\n-->")
+                    password = input("What is your password?(or type exit to exit)\n-->").strip()
                     if password.lower() == "exit":
                         go_to_first_choice = True
                         break
@@ -36,7 +36,7 @@ def sign_in():
                         for line in file:
                             items = line.split(":")
                             if username == items[0]:
-                                if password == items[1]:
+                                if password == items[1] or f'{password}\n' == items[1]:
                                     print("Signed in successfully!")
                                     return username
                                 else:
@@ -51,7 +51,7 @@ def sign_in():
         elif choice == "2":
             while True:
                 loopback = False
-                username = input("What is the username that you want to create?\n-->")
+                username = input("What is the username that you want to create?\n-->").strip()
                 if username.lower() == "exit":
                     print("Don't use that username please.")
                     continue
@@ -66,7 +66,7 @@ def sign_in():
                 else:
                     break
             while True:
-                password = input("What is the password that you want to create?\n-->")
+                password = input("What is the password that you want to create?\n-->").strip()
                 if password.lower() == "exit":
                     print("Don't use that password please.")
                     continue

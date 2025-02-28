@@ -67,17 +67,20 @@ def check(board, row, column, letter):
 def player_turn(board, letter):
     while True:
         view_board(board)
-        row = input("What row would you like to place in? Top is 1, middle is 2, and bottom is 3.\n")
+        #Lets them choose a row and collumn
+        row = input("What row would you like to place in? Top is 1, middle is 2, and bottom is 3.\n").strip()
         if row != '1' and row != '2' and row != '3':
             print("Please enter 1, 2, or 3.")
             continue
-        column = input("What column would you like to place in? Left is 1, middle is 2, and right is 3.\n")
+        column = input("What column would you like to place in? Left is 1, middle is 2, and right is 3.\n").strip()
         if column != '1' and column != '2' and column != '3':
             print("Please enter 1, 2, or 3.")
             continue
+        #Ensures they didn't place on an occupied tile
         if not check(board, int(row), int(column), letter):
             print("Please don't place on an occupied tile.")
             continue
+        #Checks if there is a match or a full board
         if not match(board, letter):
             if full(board):
                 view_board(board)
@@ -94,11 +97,13 @@ def player_turn(board, letter):
 def cpu_turn(board, letter):
     import random
     while True:
+        #Contiuously picks random numbers until the computer selects an unoccupied tile.
         row = random.randint(1, 3)
         column = random.randint(1, 3)
         if not check(board, row, column, letter):
             continue
         else:
+            #Checks if there is a match or a full board
             if not match(board, letter):
                 if full(board):
                     view_board(board)
@@ -115,12 +120,13 @@ def cpu_turn(board, letter):
 
 #Plays the game, tic tac toe.
 def tictactoe():
+    #Creats a board as a list of three rows
     rowOne = [" ", " ", " "]
     rowTwo = [" ", " ", " "]
     rowThree = [" ", " ", " "]
     board = [rowOne, rowTwo, rowThree]
     while True:
-        player = input("Would you like to be X, O or E to leave?\n").upper()
+        player = input("Would you like to be X, O or E to leave?\n").upper().strip()
         if player == 'E':
             return False
         elif player != 'X' and player != 'O':
@@ -129,6 +135,7 @@ def tictactoe():
             break
     if player == 'X':
         while True:
+            #Runs a player turn, then a CPU turn
             winner = player_turn(board, 'X')
             if winner == 'cat':
                 return False
@@ -142,6 +149,7 @@ def tictactoe():
             continue
     elif player == 'O':
         while True:
+            #Runs a CPU turn then a player turn.
             winner = cpu_turn(board, 'X')
             if winner == 'cat':
                 return False
@@ -160,7 +168,7 @@ def guessing_game():
     while True:
         guesses = 0
         #Allows the user to choose a range to guess between
-        choice = input("What range would you like to guess between?\n1: 1 - 10\n2: 1 - 100\n3: 1 - 1000\n4: Leave\n")
+        choice = input("What range would you like to guess between?\n1: 1 - 10\n2: 1 - 100\n3: 1 - 1000\n4: Leave\n").strip()
         if choice == '4':
             return False
         #Sets between as a list with the range selected
@@ -176,7 +184,7 @@ def guessing_game():
         #chooses a number between the selected range
         num = random.randint(between[0], between[1])
         while True:
-            guess = input("What number would you like to guess?\n")
+            guess = input("What number would you like to guess?\n").strip()
             try:
                 #checks if you entered a number
                 int(guess)
@@ -195,7 +203,7 @@ def guessing_game():
                 elif int(guess) == num:
                     guesses += 1
                     print(f"You got it in {guesses} tries!")
-                    return guesses
+                    return guesses, between
             else:
                 print(f"Please enter a number between {between[0]} and {between[1]}.")
                 continue
@@ -244,34 +252,35 @@ def reaction_times():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 pygame.quit()
                 reaction_time = time.time() - start
-                print(f"You reacted in {round(reaction_time, 2)} seconds.")
+                print(f"You reacted in {reaction_time} seconds.")
                 return reaction_time
             pygame.display.update()
         
 #Main ui to access the games
 def game_ui(username):
     while True:
-        #from update import update_high_score as update
-        choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit\n")
+        from update import update_tic_tac_toe_high_score as tic_tac_toe_update
+        from update import update_num_guessing_high_score as num_guessing_update
+        from update import update_reaction_speed_high_score as reaction_speed_update
+        choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit\n").strip()
         if choice == '1':
             if not tictactoe():
                 continue
             else:
-                update(username, 1)
+                tic_tac_toe_update(username)
         elif choice == '2':
             result = guessing_game()
             if not result:
                 continue
             else:
-                update(username, result)
+                num_guessing_update(username, result[0], result[1])
         elif choice == '3':
             result = reaction_times()
             if not result:
                 continue
             else:
-                update(username, result)
+                reaction_speed_update(username, result)
         elif choice == '4':
             return
         else:
             print("Please enter 1, 2, 3, or 4.")
-game_ui('Imagine_existing')

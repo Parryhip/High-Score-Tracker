@@ -5,6 +5,7 @@ def update_tic_tac_toe_high_score(username):
     if username == "anonymous":
         return  # Anonymous users don't get high scores
 
+    high_scores = {}
     filename = "High-Score-Tracker/tic_tac_toe_high_scores.txt"
 
     # Read existing high scores
@@ -16,14 +17,17 @@ def update_tic_tac_toe_high_score(username):
                 high_scores[user] = int(score)
     except FileNotFoundError:
         pass  # If file doesn't exist, treat it as empty
-
-    # Replace old score with the new one 
-    high_scores[username] = high_scores.get(username, 0)
+    # Update if new score is higher
+    if username in high_scores:
+        high_scores[username] = high_scores[username] + 1
+    else:
+        high_scores[username] = 1
 
     # Write updated high scores back to file
     with open(filename, "w") as file:
         for user, score in high_scores.items():
             file.write(f"{user}:{score}\n")
+
 
 # Updates the high score for the Number Guessing Game (lower scores are better)
 def update_num_guessing_high_score(username, new_score, range):
