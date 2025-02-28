@@ -13,7 +13,7 @@ def sign_in():
                     if username.lower() == "exit":
                         go_to_first_choice = True
                         break
-                    with open("High-Score-Tracker/login_info.txt", "r") as file:
+                    with open("login_info.txt", "r") as file:
                         for line in file:
                             items = line.split(":")
                             if username == items[0]:
@@ -32,7 +32,7 @@ def sign_in():
                     if password.lower() == "exit":
                         go_to_first_choice = True
                         break
-                    with open("High-Score-Tracker/login_info.txt", "r") as file:
+                    with open("login_info.txt", "r") as file:
                         for line in file:
                             items = line.split(":")
                             if username == items[0]:
@@ -55,7 +55,7 @@ def sign_in():
                 if username.lower() == "exit":
                     print("Don't use that username please.")
                     continue
-                with open("High-Score-Tracker/login_info.txt", "r") as file:
+                with open("login_info.txt", "r") as file:
                     for line in file:
                         items = line.split(":")
                         if username == items[0]:
@@ -73,7 +73,7 @@ def sign_in():
                 confirm_password = input("Please type your password again to confirm.\n-->")
                 if password == confirm_password:
                     print("Username of",username,"and password of",password,"has been inputted successfully!")
-                    with open("High-Score-Tracker/login_info.txt", "a") as file:
+                    with open("login_info.txt", "a") as file:
                         file.write("\n")
                         file.write(username+":"+password)
                     break
