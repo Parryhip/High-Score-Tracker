@@ -9,8 +9,8 @@ def print_tictactoe_leaderboard():
             print(count,".",user, ":",high_scores[user])
             count += 1
     else:
-
-        #make it so that when they want to leave, they can just press enter
+        input("Enter anything to continue")
+        return
 
 
 def print_numguessing_leaderboard():
@@ -22,8 +22,8 @@ def print_numguessing_leaderboard():
             print(count,".",user, ":",high_scores[user])
             count += 1
     else:
-
-        #make it so that when they want to leave, they can just press enter
+        input("Enter anything to continue")
+        return
 
 
 def print_reactionspeed_leaderboard():
@@ -35,8 +35,8 @@ def print_reactionspeed_leaderboard():
             print(count,".",user, ":",high_scores[user])
             count += 1
     else:
-
-        #make it so that when they want to leave, they can just press enter
+        input("Enter anything to continue")
+        return
 
 
 def choose_leaderboard():
@@ -49,10 +49,10 @@ def choose_leaderboard():
         elif choice == 3:
             print_reactionspeed_leaderboard()
         elif choice == 4:
-            #main function or UI before ##we don't have main yet##
+            return
         else:
             print("You didn't put in one of the given numbers!")
             continue
 
-            
+
 #-------------------------------------------------------------------------------------------End of Matthew's Code-------------------------------------------------------------------------------------------#
