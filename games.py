@@ -259,6 +259,9 @@ def reaction_times():
 #Main ui to access the games
 def game_ui(username):
     while True:
+        from display_highscores import print_tictactoe_leaderboard
+        from display_highscores import print_numguessing_leaderboard
+        from display_highscores import print_reactionspeed_leaderboard
         from update import update_tic_tac_toe_high_score as tic_tac_toe_update
         from update import update_num_guessing_high_score as num_guessing_update
         from update import update_reaction_speed_high_score as reaction_speed_update
@@ -268,18 +271,23 @@ def game_ui(username):
                 continue
             else:
                 tic_tac_toe_update(username)
+                print_tictactoe_leaderboard()
         elif choice == '2':
             result = guessing_game()
             if not result:
                 continue
             else:
                 num_guessing_update(username, result[0], result[1])
+                print_numguessing_leaderboard('1-10')
+                print_numguessing_leaderboard('1-100')
+                print_numguessing_leaderboard('1-1000')
         elif choice == '3':
             result = reaction_times()
             if not result:
                 continue
             else:
                 reaction_speed_update(username, result)
+                print_reactionspeed_leaderboard()
         elif choice == '4':
             return
         else:
