@@ -36,7 +36,7 @@ def sign_in():
                         for line in file:
                             items = line.split(":")
                             if username == items[0]:
-                                if password == items[1]:
+                                if password == items[1] or f'{password}\n' == items[1]:
                                     print("Signed in successfully!")
                                     return username
                                 else:
