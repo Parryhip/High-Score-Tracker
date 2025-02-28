@@ -15,7 +15,7 @@ def main_ui():
         if choice == '1':
             game_ui(username)
         elif choice == '2':
-            choose_leaderboard(username)
+            choose_leaderboard()
         elif choice == '3':
             print("Goodbye!")
             exit()
