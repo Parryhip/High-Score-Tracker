@@ -1,2 +1,3 @@
-mr.bob:bob
-george:bob
+
+jake:jake
+samuel:samuelisthebest

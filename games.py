@@ -44,17 +44,6 @@ def match(board, letter):
     #Returns false if no matches were found
     return False
 
-#Allows the user to choose if they want to play again
-def play_again():
-    while True:
-        answer = input("Would you like to play that game again? y/n:")
-        if answer.lower() == 'y':
-            return True
-        elif answer.lower() == 'n':
-            return False
-        else:
-            print('Please enter y or n.')
-
 #Prints the board in a way that looks like an actual tic-tac-toe board
 def view_board(board):
     for idx, item in enumerate(board):
@@ -78,17 +67,20 @@ def check(board, row, column, letter):
 def player_turn(board, letter):
     while True:
         view_board(board)
-        row = input("What row would you like to place in? Top is 1, middle is 2, and bottom is 3.\n")
+        #Lets them choose a row and collumn
+        row = input("What row would you like to place in? Top is 1, middle is 2, and bottom is 3.\n").strip()
         if row != '1' and row != '2' and row != '3':
             print("Please enter 1, 2, or 3.")
             continue
-        column = input("What column would you like to place in? Left is 1, middle is 2, and right is 3.\n")
+        column = input("What column would you like to place in? Left is 1, middle is 2, and right is 3.\n").strip()
         if column != '1' and column != '2' and column != '3':
             print("Please enter 1, 2, or 3.")
             continue
+        #Ensures they didn't place on an occupied tile
         if not check(board, int(row), int(column), letter):
             print("Please don't place on an occupied tile.")
             continue
+        #Checks if there is a match or a full board
         if not match(board, letter):
             if full(board):
                 view_board(board)
@@ -105,11 +97,13 @@ def player_turn(board, letter):
 def cpu_turn(board, letter):
     import random
     while True:
+        #Contiuously picks random numbers until the computer selects an unoccupied tile.
         row = random.randint(1, 3)
         column = random.randint(1, 3)
         if not check(board, row, column, letter):
             continue
         else:
+            #Checks if there is a match or a full board
             if not match(board, letter):
                 if full(board):
                     view_board(board)
@@ -125,26 +119,28 @@ def cpu_turn(board, letter):
         
 
 #Plays the game, tic tac toe.
-def tictactoe(username):
+def tictactoe():
+    #Creats a board as a list of three rows
     rowOne = [" ", " ", " "]
     rowTwo = [" ", " ", " "]
     rowThree = [" ", " ", " "]
     board = [rowOne, rowTwo, rowThree]
     while True:
-        player = input("Would you like to be X, O or E to leave?\n")
-        if player.upper() == 'E':
+        player = input("Would you like to be X, O or E to leave?\n").upper().strip()
+        if player == 'E':
             return False
-        elif player.upper() != 'X' and player.upper() != 'O':
+        elif player != 'X' and player != 'O':
             print("Please enter, X, O, or E.")
         else:
             break
     if player == 'X':
         while True:
+            #Runs a player turn, then a CPU turn
             winner = player_turn(board, 'X')
             if winner == 'cat':
                 return False
             elif winner == 'player':
-                return True, username
+                return True
             winner = cpu_turn(board, 'O')
             if winner == 'cat':
                 return False
@@ -153,6 +149,7 @@ def tictactoe(username):
             continue
     elif player == 'O':
         while True:
+            #Runs a CPU turn then a player turn.
             winner = cpu_turn(board, 'X')
             if winner == 'cat':
                 return False
@@ -162,16 +159,16 @@ def tictactoe(username):
             if winner == 'cat':
                 return False
             elif winner == 'player':
-                return True, username
+                return True
             continue
             
 #runs the code to play a number guessing game
-def guessing_game(username):
+def guessing_game():
     import random
     while True:
         guesses = 0
         #Allows the user to choose a range to guess between
-        choice = input("What range would you like to guess between?\n1: 1 - 10\n2: 1 - 100\n3: 1 - 1000\n4: Leave\n")
+        choice = input("What range would you like to guess between?\n1: 1 - 10\n2: 1 - 100\n3: 1 - 1000\n4: Leave\n").strip()
         if choice == '4':
             return False
         #Sets between as a list with the range selected
@@ -181,10 +178,13 @@ def guessing_game(username):
             between = [1, 100]
         elif choice == '3':
             between = [1, 1000]
+        else:
+            print("Please enter 1, 2, 3, or 4.")
+            continue
         #chooses a number between the selected range
         num = random.randint(between[0], between[1])
         while True:
-            guess = input("What number would you like to guess?\n")
+            guess = input("What number would you like to guess?\n").strip()
             try:
                 #checks if you entered a number
                 int(guess)
@@ -203,13 +203,13 @@ def guessing_game(username):
                 elif int(guess) == num:
                     guesses += 1
                     print(f"You got it in {guesses} tries!")
-                    return username, guesses, between
+                    return guesses
             else:
                 print(f"Please enter a number between {between[0]} and {between[1]}.")
                 continue
 
 #Uses pygame to create a reaction time game
-def reaction_times(username):
+def reaction_times():
     import pygame
     import time
     import random
@@ -218,37 +218,67 @@ def reaction_times(username):
     #Defines a color for the variables white and black using hex codes
     white = (255, 255, 255)
     black = (0, 0, 0)
+    print("After a random period of time, a window will appear. Click when the window appears.")
+    
+    #Chooses a random time to wait
+    wait =  random.randint(1, 10)
+    #waits
+    time.sleep(wait)
     #Sets window to a display of a certain size
-    window = pygame.display.set_mode(400, 400)
+    window = pygame.display.set_mode((400, 400))
     #Sets the name of the window that pops up
     pygame.display.set_caption('Reaction Time Test')
     #Sets a font for pygame to use
-    font = pygame.font.Font('Times New Roman', 32)
+    font = pygame.font.SysFont('monospace', 32)
     #Creates an object with text on it that can be displayed
-    text = font.render('Click Now!', True, white)
+    text = font.render('Click Now!', True, white, black)
+    #Creates a rect object to house the text
+    text_rect = text.get_rect()
     #Centers the text
-    text.center = (200, 200)
-    #Starts a loop to display the window and text
+    text_rect.center = (200, 200)
+    #Starts the timer
     start = time.time()
-    input("A window will open, and after a random period of time, a message  will appear. Click when the message appears.")
-    #CURRENTLY DOESNT DISPLAY THE WINDOOW AND WORDS SEPERATELY
-    #FIX THAT
-    #MAKE IT SO THE WINDOW IMMEDIATELY POPS UP AND THEN THEY HAVE TO WAIT TO CLICK.
-    wait =  random.randint(1, 10)
-    time.sleep(wait)
     while True:
         #Makes the window appear black
         window.fill(black)
+        #Makes the text appear on the rectangle
+        window.blit(text, text_rect)
         for event in pygame.event.get():
             #Continously loops to check if the user tried to quit, and updates the display afterwards.
             if event.type == pygame.QUIT:
                 pygame.quit()
                 reaction_time = False
-                break
+                return reaction_time
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 pygame.quit()
                 reaction_time = time.time() - start
-                break
+                print(f"You reacted in {round(reaction_time, 2)} seconds.")
+                return reaction_time
             pygame.display.update()
-
-reaction_times('Barnald')
+        
+#Main ui to access the games
+def game_ui(username):
+    while True:
+        #from update import update_high_score as update
+        choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit\n").strip()
+        if choice == '1':
+            if not tictactoe():
+                continue
+            else:
+                update(username, 1)
+        elif choice == '2':
+            result = guessing_game()
+            if not result:
+                continue
+            else:
+                update(username, result)
+        elif choice == '3':
+            result = reaction_times()
+            if not result:
+                continue
+            else:
+                update(username, result)
+        elif choice == '4':
+            return
+        else:
+            print("Please enter 1, 2, 3, or 4.")

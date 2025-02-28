@@ -11,6 +11,8 @@ def print_tictactoe_leaderboard():
     else:
         input("Enter anything to continue")
         return
+        
+        #make it so that when they want to leave, they can just press enter
 
 
 def print_numguessing_leaderboard():
