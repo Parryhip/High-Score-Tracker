@@ -2,12 +2,13 @@
 
 def print_tictactoe_leaderboard():
     from retrieve_high_scores import retrieve_tic_tac_toe as retrieve 
-    count = 0
+    count = 1
     high_scores = retrieve()
-    while count <= 10:
-        for user in high_scores:
-            print(count,".",user, ":",high_scores[user])
-            count += 1
+    for user in high_scores:
+        print(count,".",user, ":",high_scores[user])
+        count += 1
+        if count > 11:
+            break
     else:
         input("Enter anything to continue")
         return
@@ -15,14 +16,16 @@ def print_tictactoe_leaderboard():
         #make it so that when they want to leave, they can just press enter
 
 
-def print_numguessing_leaderboard():
+def print_numguessing_leaderboard(rangestr):
     from retrieve_high_scores import retrieve_num_guessing as retrieve 
-    count = 0
-    high_scores = retrieve()
-    while count <= 10:
-        for user in high_scores:
-            print(count,".",user, ":",high_scores[user])
-            count += 1
+    count = 1
+    high_scores = retrieve(rangestr)
+    print(f'{rangestr}:')
+    for user in high_scores:
+        print(count,".",user, ":",high_scores[user])
+        count += 1
+        if count > 11:
+            break
     else:
         input("Enter anything to continue")
         return
@@ -30,12 +33,13 @@ def print_numguessing_leaderboard():
 
 def print_reactionspeed_leaderboard():
     from retrieve_high_scores import retrieve_reaction_speed as retrieve 
-    count = 0
+    count = 1
     high_scores = retrieve()
-    while count <= 10:
-        for user in high_scores:
-            print(count,".",user, ":",high_scores[user])
-            count += 1
+    for user in high_scores:
+        print(count,".",user, ":",high_scores[user])
+        count += 1
+        if count > 11:
+            break
     else:
         input("Enter anything to continue")
         return
@@ -47,7 +51,9 @@ def choose_leaderboard():
         if choice == 1:
             print_tictactoe_leaderboard()
         elif choice == 2:
-            print_numguessing_leaderboard()
+            print_numguessing_leaderboard('1-10')
+            print_numguessing_leaderboard('1-100')
+            print_numguessing_leaderboard('1-1000')
         elif choice == 3:
             print_reactionspeed_leaderboard()
         elif choice == 4:

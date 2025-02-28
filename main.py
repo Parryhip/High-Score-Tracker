@@ -11,7 +11,7 @@ def main_ui():
     else:
         username = signed_in
     while True:
-        choice = input("What would you like to do?\n1:Play a game\n2:View leaderboard\n3:Leave").strip()
+        choice = input("What would you like to do?\n1:Play a game\n2:View leaderboard\n3:Leave\n").strip()
         if choice == '1':
             game_ui(username)
         elif choice == '2':
