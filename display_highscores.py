@@ -2,7 +2,7 @@
 
 def print_tictactoe_leaderboard():
     from retrieve_high_scores import retrieve_tic_tac_toe as retrieve 
-    count = 0
+    count = 1
     high_scores = retrieve()
     while count <= 10:
         for user in high_scores:
@@ -17,7 +17,7 @@ def print_tictactoe_leaderboard():
 
 def print_numguessing_leaderboard():
     from retrieve_high_scores import retrieve_num_guessing as retrieve 
-    count = 0
+    count = 1
     high_scores = retrieve()
     while count <= 10:
         for user in high_scores:
@@ -30,7 +30,7 @@ def print_numguessing_leaderboard():
 
 def print_reactionspeed_leaderboard():
     from retrieve_high_scores import retrieve_reaction_speed as retrieve 
-    count = 0
+    count = 1
     high_scores = retrieve()
     while count <= 10:
         for user in high_scores:
@@ -56,4 +56,5 @@ def choose_leaderboard():
             print("You didn't put in one of the given numbers!")
             continue
 
+choose_leaderboard()
 #-------------------------------------------------------------------------------------------End of Matthew's Code-------------------------------------------------------------------------------------------#
