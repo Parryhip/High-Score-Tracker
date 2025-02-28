@@ -9,6 +9,7 @@ def update_tic_tac_toe_high_score(username):
     filename = "High-Score-Tracker/tic_tac_toe_high_scores.txt"
 
     # Read existing high scores
+    high_scores = {}
     try:
         with open(filename, "r") as file:
             for line in file:
