@@ -251,7 +251,7 @@ def reaction_times():
                 return reaction_time
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 pygame.quit()
-                reaction_time = time.time() - start
+                reaction_time = round((time.time() - start), 2)
                 print(f"You reacted in {reaction_time} seconds.")
                 return reaction_time
             pygame.display.update()
