@@ -275,6 +275,7 @@ def game_ui(username):
             else:
                 #if tictactoe returned true, update user's score
                 tic_tac_toe_update(username)
+                print("--------------------------------------------Leaderboard for Tic Tac Toe:--------------------------------------------")
                 print_tictactoe_leaderboard()
         elif choice == '2':
             #Sets the return of guessing game to result, and if result is not false, update and display high scores
@@ -283,8 +284,11 @@ def game_ui(username):
                 continue
             else:
                 num_guessing_update(username, result[0], result[1])
+                print("--------------------------------------------Leaderboard for 1-10 division:--------------------------------------------")
                 print_numguessing_leaderboard('1-10')
+                print("--------------------------------------------Leaderboard for 1-100 division:--------------------------------------------")
                 print_numguessing_leaderboard('1-100')
+                print("--------------------------------------------Leaderboard for 1-1000 division:--------------------------------------------")
                 print_numguessing_leaderboard('1-1000')
         elif choice == '3':
             #Sets the return of reaction times to result, and if result is not false, update and display high scores
@@ -293,6 +297,7 @@ def game_ui(username):
                 continue
             else:
                 reaction_speed_update(username, result)
+                print("--------------------------------------------Leaderboard for Reaction Speeds:--------------------------------------------")
                 print_reactionspeed_leaderboard()
         elif choice == '4':
             return
