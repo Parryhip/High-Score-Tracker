@@ -2,7 +2,6 @@
 
 #function to print the tictactoe leaderboard
 def print_tictactoe_leaderboard():
-    print("--------------------------------------------Leaderboard for Tic Tac Toe:--------------------------------------------")
     #imports sam's function to take the tictactoe high scores, aliased
     from retrieve_high_scores import retrieve_tic_tac_toe as retrieve 
     #countable variable
@@ -70,6 +69,7 @@ def choose_leaderboard():
             continue
         #calls function to print the tictactoe leaderboard
         if choice == 1:
+            print("--------------------------------------------Leaderboard for Tic Tac Toe:--------------------------------------------")
             print_tictactoe_leaderboard()
         #calls function for each of the numberguessing leaderboards
         elif choice == 2:
