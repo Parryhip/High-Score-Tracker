@@ -11,7 +11,7 @@ def sort_by_float(item):
 
 def retrieve_tic_tac_toe():
     list_with_highscores_to_sort = []
-    with open("High-Score-Tracker/tic_tac_toe_high_scores.txt", "r") as file:
+    with open("tic_tac_toe_high_scores.txt", "r") as file:
         for line in file:
             items = line.split(":")
             list_with_highscores_to_sort.append((items[0], items[1]))
@@ -23,7 +23,7 @@ def retrieve_tic_tac_toe():
 
 def retrieve_num_guessing(rangestr):
     list_with_highscores_to_sort = []
-    with open("High-Score-Tracker/num_guessing_high_scores.txt", "r") as file:
+    with open("num_guessing_high_scores.txt", "r") as file:
         for line in file:
             items = line.split(":")
             if items[2] == rangestr+'\n':
@@ -36,7 +36,7 @@ def retrieve_num_guessing(rangestr):
 
 def retrieve_reaction_speed():
     list_with_highscores_to_sort = []
-    with open("High-Score-Tracker/reaction_speed_high_scores.txt", "r") as file:
+    with open("reaction_speed_high_scores.txt", "r") as file:
         for line in file:
             items = line.split(":")
             list_with_highscores_to_sort.append((items[0], items[1]))

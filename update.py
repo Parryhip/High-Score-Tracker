@@ -6,7 +6,7 @@ def update_tic_tac_toe_high_score(username):
         return  # Anonymous users don't get high scores
 
     high_scores = {}
-    filename = "High-Score-Tracker/tic_tac_toe_high_scores.txt"
+    filename = "tic_tac_toe_high_scores.txt"
 
     # Read existing high scores
     high_scores = {}
@@ -35,7 +35,7 @@ def update_num_guessing_high_score(username, new_score, range):
         return  # Anonymous users don't get high scores
 
     high_scores = {}
-    filename = "High-Score-Tracker/num_guessing_high_scores.txt"
+    filename = "num_guessing_high_scores.txt"
 
     # Read existing high scores
     try:
@@ -68,7 +68,7 @@ def update_reaction_speed_high_score(username, new_time):
         return  # Anonymous users don't get high scores
 
     high_scores = {}
-    filename = "High-Score-Tracker/reaction_speed_high_scores.txt"
+    filename = "reaction_speed_high_scores.txt"
 
     # Read existing high scores
     try:
