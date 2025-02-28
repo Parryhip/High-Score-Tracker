@@ -259,25 +259,27 @@ def reaction_times():
 #Main ui to access the games
 def game_ui(username):
     while True:
-        #from update import update_high_score as update
+        from update import update_tic_tac_toe_high_score as tic_tac_toe_update
+        from update import update_num_guessing_high_score as num_guessing_update
+        from update import update_reaction_speed_high_score as reaction_speed_update
         choice = input("Which game do you want to play?\n1:Tic Tac Toe\n2:Number Guessing Game\n3:Reaction time game\n4:Exit\n").strip()
         if choice == '1':
             if not tictactoe():
                 continue
             else:
-                update(username, 1)
+                tic_tac_toe_update(username, 1)
         elif choice == '2':
             result = guessing_game()
             if not result:
                 continue
             else:
-                update(username, result)
+                num_guessing_update(username, result)
         elif choice == '3':
             result = reaction_times()
             if not result:
                 continue
             else:
-                update(username, result)
+                reaction_speed_update(username, result)
         elif choice == '4':
             return
         else:
