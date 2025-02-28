@@ -1,7 +1,10 @@
 #Samuel Andelin, Retrieve high scores function
 
 def sort_by(item):
-    return int(item[1])
+    try:
+        return round(int(item[1]), 2)
+    except:
+        return round(float(item[1]), 2)
 
 def sort_by_float(item):
     return float(item[1])

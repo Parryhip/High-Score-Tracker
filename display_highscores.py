@@ -47,7 +47,11 @@ def print_reactionspeed_leaderboard():
 
 def choose_leaderboard():
     while True:
-        choice = int(input("What leaderboard would you like to see?\nPress 1 for Tic Tac Toe\nPress 2 for Number Guessing Game\nPress 3 for Reaction Speed Game\nPress 4 to leave leaderboards\n:"))
+        try:
+            choice = int(input("What leaderboard would you like to see?\nPress 1 for Tic Tac Toe\nPress 2 for Number Guessing Game\nPress 3 for Reaction Speed Game\nPress 4 to leave leaderboards\n:"))
+        except:
+            print("Not a number!")
+            continue
         if choice == 1:
             print_tictactoe_leaderboard()
         elif choice == 2:
